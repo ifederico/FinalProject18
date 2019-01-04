@@ -1,12 +1,3 @@
-#supplied with a word and identify anagrams to that word
-#easy and hard levels based on amount of letters
-#hint based on the definition of the anagram listed
-#    ex. "cinema" *there are 2 anagrams*
-#    listing how many anagrams there are; part of difficulty or choose anagrams that have a single anagram
-#25 words per level
-#4 letters per anagram in easy mode
-#6 or more per anagram in hard mode
-
 import random
 import sys
 
@@ -25,68 +16,74 @@ input = print("Welcome to Fanagrams! Get it? Cuz the creator is a 'fan' of 'anag
     else:
         sys.exit()
 
-for anagram in word:
-    if anagram in guesses:
-        print("Already Tried! Another...)
-    if anagram = True:
-        random.choice():
-            print("Nice choice!", + guesses +, " is CORRECT!")
-            print("You're on FIRE!", + guesses +, "is CORRECT!")
-            print("You're on a roll, no time to waste!", + guesses +, "is CORRECT!")
-            failed += 1
-    if anagram not in word:
-        print("That's Not a Word! Keep Guessing, Turns are Unlimited!")
+    random_word():
+    for anagram in word:
+        if anagram in guesses:
+            print("Already Tried! Another...)
+        if anagram = True:
+            random.choice():
+                print("Nice choice!", + guesses +, " is CORRECT!")
+                print("You're on FIRE!", + guesses +, "is CORRECT!")
+                print("You're on a roll, no time to waste!", + guesses +, "is CORRECT!")
+                failed += 1
+        if anagram not in word:
+            print("That's Not a Word! Keep Guessing, Turns are Unlimited!")
 
 
 class Game_Basics:
     "'Generic game basics'"
-    def __init__(self,rounds,guesses,anagram):
+    def __init__(self,rounds,guesses,anagram,points,time,difficulty):
         self.rounds = rounds
         self.guesses = guesses
         self.anagram = anagram
+        self.points = points
+        self.time = time
 
-    #while rounds > 0:
-        #if rounds = 0:
-            #end_game()
+    e_dict = {track: 0, points: 5, time: 120}
+    h_dict = {track: 0, points: 10, time: 60}
 
+    def random_word():
+        "'Chooses random word from each level list.'"
+        if difficulty = easy:
+            word1 = random.choice(word1)
+            print(f"Word: {word1}")
+            guesses = print("Anagram?")
+        else:
+            word2 = random.choice(word2)
+            print(f"Word: {word2})
+            guesses = print("Anagram?")
 
-
-
+    def point_score():
+        "'Tracks the amount of points earned in the game'"
+        if difficulty = easy:
+            if anagram = True:
+                track += 1
+                points += 5
+        else:
+            if anagram = True:
+                track += 1
+                points += 10
+        return random_word()
 
     def end_game(self):
         "'All ten rounds of a level are completed.'"
-
-
-
-class Game_Basics(Easy):
-    "'Game rules for easy level'"
-    def __init__(self):
-        self.
+        if rounds = 0:
+            print("You've reached the end!")
+        return point_track
 
 #easy words
-word1 = ['deaf'fade,'dice'iced,'disk'kids/skid,'sole'lose,
-'golf'flog,'fuel'flue,'grab'brag/garb,'gulp'plug,'fowl'wolf/flow,'dear'read/dare,'snag'nags,'mean'amen/mane/name,
-'note'tone,'pace'cape,'pale'leap/peal/plea,'race'care/acre,'reef'free,'ring'grin,'silo'soil/oils,'step'pets/pest]
+word1 = ['deaf','dice','disk','sole','golf','fuel','grab','gulp',
+'fowl','dear','snag','mean','note','pace','pale','race','reef','ring','silo','step']
+anagram1 = ['fade','iced','kids','skid','lose','flog','flue','brag','garb','plug','wolf','flow','read','dare','nags',
+'amen','mane','name','tone','cape','leap','peal','plea','care','acre','free','grin','soil','oils','pets','pest']
+anagram_pair = {'deaf':'fade','dice':'iced','disk':'kids'and'skid','sole':'lose','golf':'flog','fuel':'flue','grab':'brag'and'garb',
+'gulp':'plug','fowl':'wolf'and'flow','dear':'read'and'dare','
+#in process
 
-word1 = random.choice(word1)
-
-def point_escore():
-        "'Tracks the points earned from each easy round.'"
-
-
-
-class Game_Basics(Hard):
-    "'Game rules for hard level'"
-    def __init__(self):
-        self.
 
 #hard words
-word2 = ['cinema'iceman/anemic,'except'expect,'recede'decree,'friend'finder,
-'grease'agrees,'incept'pectin,'leader'dealer,'marine'airmen/remain,'meteor'remote,'oceans'canoes,'sniper'ripens,'hustle'sleuth,
-'fringe'finger,'impart'armpit,'listen'silent/enlist/tinsel/inlets,'manors'ransom,'plates'palest/pastel/petals/pleats/staple,
-'potion'option,'resins'rinses/sirens,'rustic'citrus]
-
-word2 = random.choice(word2)
-
-def point_hscore():
-    "'Tracks the points earned from each hard round.'"
+word2 = ['cinema','except','recede','friend','grease','incept','leader','marine',
+'meteor','oceans','sniper','hustle','fringe','impart','listen','manors','plates','potion','resins','rustic']
+anagram2 = ['iceman','anemic','expect','decree','finder','agrees','pectin','dealer','airmen','remain','remote','canoes','ripens','sleuth',
+'finger','armpit','silent','enlist','tinsel','inlets','ransom','palest','pastel','petals','pleats','staple','option','rinses','sirens','citrus']
+#in process
