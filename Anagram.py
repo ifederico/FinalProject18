@@ -3,6 +3,8 @@ import sys
 
 chosen_word = ""
 guesses = ""
+anagram_choice = ""
+rounds = 10
 
 class Game_Basics:
     "'Generic game basics'"
@@ -37,34 +39,48 @@ def random_word(dict_to_choose_from):
     print(f"Word: {word}")
     return word
 
-def anagram_guess():
+def anagram_guess(chosen_word, anagram_choice, difficulty, easy_words, hard_words):
     "'Determines if your guesses were correct.'"
-    for anagram in word:
-        if anagram in guesses:
-            print("Already Tried! Another...")
-        if anagram == True:
-            correct = ["Nice choice!", "You're on FIRE!", "You're on a roll, no time to waste!"]
-            print(f"{random.choice(correct)} {guesses} is CORRECT!")
-        if anagram not in word:
-            print("That's Not a Word! Keep Guessing, Turns are Unlimited!")
+    if difficulty == 'easy':
+        correct_choice = easy_words[chosen_word]
+    elif difficulty == 'hard':
+        correct_choice = hard_words[chosen_word]
+    if anagram_choice in correct_choice:
+        correct = ["Nice choice!", "You're on FIRE!", "You're on a roll, no time to waste!"]
+        print(f"{random.choice(correct)} {anagram_choice} is CORRECT!")
+        #point score
+    while anagram_choice not in correct_choice:
+        print("That's Not a Word! Keep Guessing, Turns are Unlimited!")
+        print(f"Word: {chosen_word}")
+        anagram_choice = input(f"Anagram: {guesses}")
 
-def point_score():
-    "'Track the amount of points earned in the game.'"
-    if difficulty == easy:
-        if anagram == True:
-            track += 1
-            points += 5
-    else:
-        if anagram == True:
-            track += 1
-            points += 10
-    return random_word()
 
-def end_game(self):
-    "'All ten rounds of a level are completed.'"
-    if rounds == 0:
-        print("You've reached the end!")
-    return point_track
+        # if anagram in guesses:
+        #     print("Already Tried! Another...")
+        # if anagram == True:
+        #     correct = ["Nice choice!", "You're on FIRE!", "You're on a roll, no time to waste!"]
+        #     print(f"{random.choice(correct)} {guesses} is CORRECT!")
+        # if anagram not in word:
+        #     print("That's Not a Word! Keep Guessing, Turns are Unlimited!")
+
+
+#def point_score():
+#    "'Track the amount of points earned in the game.'"
+#    if difficulty == easy:
+#        if anagram == True:
+#            track += 1
+#            points += 5
+#    else:
+#        if anagram == True:
+#            track += 1
+#            points += 10
+#    return random_word()
+
+#def end_game(self):
+#    "'All ten rounds of a level are completed.'"
+#    if rounds == 0:
+#        print("You've reached the end!")
+#    return point_track
 
 #easy
 easy_words = {'deaf':['fade'],'dice':['iced'],'disk':['kids','skid'],'sole':['lose'],'golf':['flog'],'fuel':['flue'],'grab':['brag','garb'],
@@ -99,7 +115,9 @@ elif input2 == 'hard':
   print("P.S. Some of the words may have several anagrams and each hint will be specific to one option. ARE YOU READY?")
   chosen_word = random_word(hard_words)
 
+#while rounds > 0:
 anagram_choice = input(f"Anagram: {guesses}")
+anagram_guess(chosen_word, anagram_choice, input2, easy_words, hard_words)
 
 
 
