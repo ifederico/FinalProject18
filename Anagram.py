@@ -1,127 +1,102 @@
 import random
 import sys
 
-chosen_word = ""
-guesses = ""
 anagram_choice = ""
-rounds = 10
+rounds = 1
+points = 0
+s = 1
 
 class Game_Basics:
-    "'Generic game basics'"
-    def __init__(self,rounds,guesses,anagram,points,time,difficulty,easy,hard):
-        self.rounds = rounds
-        self.guesses = guesses
-        self.anagram = anagram
-        self.points = points
-        self.time = time
+    """Generic game basics"""
+    def __init__(self,difficulty):
+        #self.rounds = 10
+        #self.guesses = ""
+        #self.points = 0
         self.difficulty = difficulty
-        self.easy = easy
-        self.hard = hard
+
+        if difficulty == 'easy':
+            self.words = {'deaf':['fade'],'dice':['iced'],'disk':['kids','skid'],'sole':['lose'],'golf':['flog'],'fuel':['flue'],'grab':['brag','garb'],
+        'gulp':['plug'],'fowl':['wolf','flow'],'dear':['read','dare'],'snag':['nags'],'mean':['amen','mane','name'],'note':['tone'],'pace':['cape'],
+        'pale':['peal','plea','leap'],'race':['care','acre'],'reef':['free'],'ring':['grin'],'silo':['soil','oils'],'step':['pets','pest']}
+
+        elif difficulty == 'hard':
+            self.words = {'cinema':['iceman','anemic'],'except':['expect'],'recede':['decree'],'friend':['finder'],'grease':['agrees'],'incept':['pectin'],
+        'leader':['dealer'],'marine':['airmen','remain'],'meteor':['remote'],'oceans':['canoes'],'sniper':['ripens'],'hustle':['sleuth'],'fringe':['finger'],
+        'impart':['armpit'],'listen':['silent','enlist','tinsel','inlets'],'manors':['ransom'],'plates':['palest','pastel','petals','pleats','staple'],
+        'potion':['option'],'resins':['rinses','sirens'],'rustic':['citrus','curist']}
+
         self.word = ""
 
-    #e_dict = {track: 0, points: 5, time: 120}
-    #h_dict = {track: 0, points: 10, time: 60}
+    def intro(self):
+        print("To play, you must think of an anagram per word (of ten words). You will have 3 guesses per round! ARE YOU READY?")
+        input("Press ENTER to continue......")
 
-# def random_word():
-#     "'Chooses random word from each level list.'"
-#     if difficulty == easy:
-#         word1 = random.choice(easy_words)
-#         print(f"Word: {word1}")
-#         guesses = print("Anagram?")
-#     else:
-#         word2 = random.choice(hard_words)
-#         print(f"Word: {word2}")
-#         guesses = print("Anagram?")
+    def random_word(self):
+        """Choose random word from specified level list"""
+        self.word = random.choice(list(self.words.keys()))
+        return self.word
 
-def random_word(dict_to_choose_from):
-    """Choose random word from specified level list"""
-    word = random.choice(list(dict_to_choose_from.keys()))
-    print(f"Word: {word}")
-    return word
+    def anagram_guess(self):
+        """Determines if your guesses were correct"""
+        guess_count = 2
+        global s
+        correct_choice = self.words[self.word]
+        print("---------")
+        print(f"Round {rounds}")
+        print(f"Word: {self.word}\n")
+        anagram_choice = input("Anagram: ").lower()
+        print(" ")
+        print(" ")
+        while anagram_choice not in correct_choice and guess_count > 0:
+            print(f"That's Not a Word! Keep Guessing, Guesses Left = {guess_count}!")
+            print(f"Word: {self.word}\n")
+            anagram_choice = input("Anagram: ").lower()
+            guess_count -= 1
+        if anagram_choice in correct_choice:
+            correct = ["Nice choice!", "You're on FIRE!", "You're on a roll, no time to waste!"]
+            print(f"{random.choice(correct)} {anagram_choice} is CORRECT!")
+            s = 1
+        if anagram_choice not in correct_choice:
+            s = 0
+            print("Sorry, you exceeded your 3 guesses. Next Round...")
+            print(" ")
+        return s
 
-def anagram_guess(chosen_word, anagram_choice, difficulty, easy_words, hard_words):
-    "'Determines if your guesses were correct.'"
-    if difficulty == 'easy':
-        correct_choice = easy_words[chosen_word]
-    elif difficulty == 'hard':
-        correct_choice = hard_words[chosen_word]
-    if anagram_choice in correct_choice:
-        correct = ["Nice choice!", "You're on FIRE!", "You're on a roll, no time to waste!"]
-        print(f"{random.choice(correct)} {anagram_choice} is CORRECT!")
-        #point score
-    while anagram_choice not in correct_choice:
-        print("That's Not a Word! Keep Guessing, Turns are Unlimited!")
-        print(f"Word: {chosen_word}")
-        anagram_choice = input(f"Anagram: {guesses}")
-
-
-        # if anagram in guesses:
-        #     print("Already Tried! Another...")
-        # if anagram == True:
-        #     correct = ["Nice choice!", "You're on FIRE!", "You're on a roll, no time to waste!"]
-        #     print(f"{random.choice(correct)} {guesses} is CORRECT!")
-        # if anagram not in word:
-        #     print("That's Not a Word! Keep Guessing, Turns are Unlimited!")
-
-
-#def point_score():
-#    "'Track the amount of points earned in the game.'"
-#    if difficulty == easy:
-#        if anagram == True:
-#            track += 1
-#            points += 5
-#    else:
-#        if anagram == True:
-#            track += 1
-#            points += 10
-#    return random_word()
-
-#def end_game(self):
-#    "'All ten rounds of a level are completed.'"
-#    if rounds == 0:
-#        print("You've reached the end!")
-#    return point_track
-
-#easy
-easy_words = {'deaf':['fade'],'dice':['iced'],'disk':['kids','skid'],'sole':['lose'],'golf':['flog'],'fuel':['flue'],'grab':['brag','garb'],
-'gulp':['plug'],'fowl':['wolf','flow'],'dear':['read','dare'],'snag':['nags'],'mean':['amen','mane','name'],'note':['tone'],'pace':['cape'],
-'pale':['peal','plea','leap'],'race':['care','acre'],'reef':['free'],'ring':['grin'],'silo':['soil','oils'],'step':['pets','pest']}
-
-#hard
-hard_words = {'cinema':['iceman','anemic'],'except':['expect'],'recede':['decree'],'friend':['finder'],'grease':['agrees'],'incept':['pectin'],
-'leader':['dealer'],'marine':['airmen','remain'],'meteor':['remote'],'oceans':['canoes'],'sniper':['ripens'],'hustle':['sleuth'],'fringe':['finger'],
-'impart':['armpit'],'listen':['silent','enlist','tinsel','inlets'],'manors':['ransom'],'plates':['palest','pastel','petals','pleats','staple'],
-'potion':['option'],'resins':['rinses','sirens'],'rustic':['citrus']}
-
-
-input1 = input("Welcome to Fanagrams! Get it? Cuz the creator is a 'fan' of 'anagrams'! AHAHA I'm too much.... You're probably thinking, what even are anagrams? If you want to play, type 'c' for continue. If not, type 'n' for nope. ")
+input1 = input("Welcome to Fanagrams! Get it? Cuz the creator is a 'fan' of 'anagrams'! AHAHA I'm too much.... You're probably thinking, what even are anagrams? If you want to play, type 'c' for continue. If not, type 'n' for nope. ").lower()
 while input1 not in ['c', 'n']:
-  input1 = input("If you want to play, type 'c' for continue. If not, type 'n' for nope. ")
+  input1 = input("If you want to play, type 'c' for continue. If not, type 'n' for nope. ").lower()
 if input1 == 'n':
   sys.exit()
 if input1 == 'c':
+  print(" ")
   print("Anagrams are the rearrangements of letters from a word to create another word. It's simple word play at its best!")
   print("Fanagrams is designed with two levels: Easy and Hard")
   print("Easy consists of 4 letter words while Hard consists of 6 letter words. You get the option to choose either level!")
-input2 = input("So what will it be, Easy or Hard? ")
+input2 = input("So what will it be, Easy or Hard? ").lower()
 while input2 not in ['easy','hard']:
-  input2 = input("So what will it be Easy or Hard? ")
-if input2 == 'easy':
-  print("To play, you must think of an anagram per word (of ten words) in fifteen seconds! Don't worry if you're stumped, I'll hint you once to put you in the right direction!")
-  print("P.S. Some of the words may have several anagrams and each hint will be specific to one option. ARE YOU READY?")
-  chosen_word = random_word(easy_words)
-elif input2 == 'hard':
-  print("To play, you must think of an anagram per word (of ten words) in ten seconds! Don't worry if you're stumped, I'll hint you once to put you in the right direction!")
-  print("P.S. Some of the words may have several anagrams and each hint will be specific to one option. ARE YOU READY?")
-  chosen_word = random_word(hard_words)
+  input2 = input("So what will it be Easy or Hard? ").lower()
+print(" ")
 
-#while rounds > 0:
-anagram_choice = input(f"Anagram: {guesses}")
-anagram_guess(chosen_word, anagram_choice, input2, easy_words, hard_words)
+game = Game_Basics(input2)
+game.intro()
+while rounds != 11:
+    game.random_word()
+    game.anagram_guess()
+    rounds += 1
+    if s == 1:
+        if input2 == "easy":
+            points += 5
+        if input2 == "hard":
+            points += 10
+    elif s == 0:
+        print(f"You have {points} Total Points, so far!")
+    del game.words[game.word]
 
-
-
-
-
-
-
+if rounds == 11:
+    print("You've reached the end!")
+    if input2 == "easy":
+        print(f"You got {points} out of 50 points!")
+    if input2 == "hard":
+        print(f"You got {points} out of 100 points!")
+    print(" ")
+    print("Shoutout to those who helped in the making of this game: Omay, Nikki, and Mrs. Gerstein! :)")
