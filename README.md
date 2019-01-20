@@ -15,6 +15,9 @@ Enjoy this quick brainteaser!
 Shoutout to those who helped in the making of this game: Omay, Nikki, and Mrs. Gerstein! :)
 
 Citations:
+
 “Python Global Keyword.” Python Strings (With Examples), www.programiz.com/python-programming/global-keyword.
+
 SQL_rookieSQL_rookie 6319, et al. “Python: Functions - Carry the Results from One Function into Another.” Stack Overflow, stackoverflow.com/questions/27077713/python-functions-carry-the-results-from-one-function-into-another. 
+
 "Python Tutorial: Functions." Tutorials, Python Courses: Online and On Site, www.python-course.eu/python3_functions.php.
