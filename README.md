@@ -1,4 +1,7 @@
-#Welcome to Fanagrams! Intro to Programming Final Project - Fall 2018
+WELCOME TO FANAGRAMS!
+
+Intro to Programming Final Project - Fall 2018
+
 Fanagrams is a quick game of identifying anagrams; the rearrangements of letters from a word to create another word.
 Fanagrams is designed with two levels: Easy and Hard
 Easy consists of 4 letter words while Hard consists of 6 letter words. The player gets the option to choose either level.
