@@ -21,3 +21,5 @@ Citations:
 SQL_rookieSQL_rookie 6319, et al. “Python: Functions - Carry the Results from One Function into Another.” Stack Overflow, stackoverflow.com/questions/27077713/python-functions-carry-the-results-from-one-function-into-another. 
 
 "Python Tutorial: Functions." Tutorials, Python Courses: Online and On Site, www.python-course.eu/python3_functions.php.
+
+Presentation: https://docs.google.com/presentation/d/1dbi1wdpSuT6HIJ0zHLbs8pCasQ6WguRNZeGKPglpxGk/edit#slide=id.g4ca3917435_0_62 
